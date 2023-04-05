@@ -1,10 +1,16 @@
+"""
+Face detection using OpenCV for my science assessment.
+
+
+Specific controls are:
+esc - exit the program
+0-9 - change scale factor
+"""
+
 import cv2
 import sys
-import imutils
-from imutils.video import VideoStream
-from time import sleep
 
-cascPath = "haarcascades/haarcascade_frontalface_default.xml"
+cascPath = "haarcascade_frontalface_default.xml"
 faceCasc = cv2.CascadeClassifier(cascPath)
 
 video_capture = cv2.VideoCapture(0)
@@ -51,7 +57,8 @@ while True:
     elif key >= 49 and key <= 57:
         scale_factor = d[key]
 
-    print("Scale Factor:", scale_factor)
+    print("\rScale Factor:", scale_factor, end="")
 
+print("\nClosing...")
 video_capture.release()
 cv2.destroyAllWindows()
