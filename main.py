@@ -4,7 +4,7 @@ Face detection using OpenCV for my science assessment.
 
 Specific controls are:
 esc - exit the program
-0-9 - change scale factor
+1-9 - change scale factor
 """
 
 import cv2
@@ -20,6 +20,7 @@ if not video_capture.isOpened():
     sys.exit()
 
 scale_factor = 1.1
+detection_level = 1
 
 while True:
     ret, frame = video_capture.read()
@@ -56,8 +57,9 @@ while True:
         break
     elif key >= 49 and key <= 57:
         scale_factor = d[key]
+        detection_level = key - 48
 
-    print("\rScale Factor:", scale_factor, end="")
+    print(f"\rDetection Level: {detection_level} Scale Factor: {scale_factor}", end="")
 
 print("\nClosing...")
 video_capture.release()
